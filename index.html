@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ==========================================
-           GLOBAL & VARIABLES (Exact Visual Theme)
-           ========================================== */
         :root {
             --bg-dark: #0a0c10;
             --bg-card: #12161f;
@@ -40,69 +37,33 @@
             font-family: 'Cinzel', serif;
         }
 
-        .cursive {
-            font-family: 'Great Vibes', cursive;
-        }
-
         /* ==========================================
-           CURTAIN & INITIAL DOOR ANIMATION (Opening Animation)
-           ========================================== */
-.curtain-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #0b0b0b;
-    display: flex;
-    flex-direction: column; /* ഇത് പുതിയതായി ചേർക്കുക */
-    justify-content: center;
-    align-items: center;
-    text-align: center;     /* ഇത് പുതിയതായി ചേർക്കുക */
-    z-index: 99999;
-    transition: transform 1s ease-in-out, opacity 0.8s ease-in-out;
-}
-body.loaded .curtain-overlay {
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-}
-
-        .curtain-left::after, .curtain-right::after {
-            content: '';
-            position: absolute;
+            CURTAIN OVERLAY & ANIMATION
+            ========================================== */
+        .curtain-overlay {
+            position: fixed;
             top: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
-        }
-
-        .curtain-left { transform: translateX(0); border-right: 1px solid var(--gold-primary); }
-        .curtain-right { transform: translateX(0); border-left: 1px solid var(--gold-primary); }
-
-        body.loaded .curtain-left { transform: translateX(-100%); }
-        body.loaded .curtain-right { transform: translateX(100%); }
-
-        .intro-card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0b0b0b;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            z-index: 10000;
-            transition: opacity 1s ease, transform 1s ease;
-            color: var(--gold-primary);
+            z-index: 99999;
+            transition: transform 1s ease-in-out, opacity 0.8s ease-in-out;
+            pointer-events: auto;
         }
 
-        body.loaded .intro-card {
+        body.loaded .curtain-overlay {
+            transform: translateY(-100%);
             opacity: 0;
-            transform: translate(-50%, -60%);
             pointer-events: none;
         }
 
-        /* ==========================================
-           BACKGROUND PATTERN & GLOW
-           ========================================== */
+        /* Background Pattern & Glow */
         .bg-pattern {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -123,9 +84,7 @@ body.loaded .curtain-overlay {
             pointer-events: none;
         }
 
-        /* ==========================================
-           NAVIGATION BAR
-           ========================================== */
+        /* Navigation Bar */
         header {
             position: fixed;
             top: 0; left: 0; width: 100%;
@@ -164,9 +123,7 @@ body.loaded .curtain-overlay {
             color: var(--gold-primary);
         }
 
-        /* ==========================================
-           HERO SECTION
-           ========================================== */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -228,9 +185,7 @@ body.loaded .curtain-overlay {
             opacity: 0.5;
         }
 
-        /* ==========================================
-           COUNTDOWN SECTION
-           ========================================== */
+        /* Countdown Section */
         .countdown-section {
             padding: 60px 20px;
             text-align: center;
@@ -275,9 +230,8 @@ body.loaded .curtain-overlay {
             color: var(--text-muted);
             text-transform: uppercase;
         }
-        /* ==========================================
-           CARDS SECTION (Prayers, Blessings, Family)
-           ========================================== */
+
+        /* Cards & Content Section */
         .content-section {
             padding: 80px 8%;
             max-width: 1200px;
@@ -322,38 +276,6 @@ body.loaded .curtain-overlay {
             line-height: 1.6;
         }
 
-        .card ul {
-            list-style: none;
-            text-align: left;
-            margin-top: 15px;
-        }
-
-        .card ul li {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card ul li i {
-            font-size: 0.8rem;
-            margin: 0;
-        }
-
-        /* Family Details Special Layout */
-        .family-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 2px solid var(--gold-primary);
-            margin: 0 auto 20px;
-            object-fit: cover;
-            background-color: var(--bg-dark);
-        }
-
-        /* ==========================================
-           LOCATION SECTION & BUTTONS
-           ========================================== */
         .location-container {
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
@@ -372,16 +294,22 @@ body.loaded .curtain-overlay {
             text-decoration: none;
             border-radius: 30px;
             margin-top: 20px;
+            cursor: pointer;
+            border: none;
             transition: opacity 0.3s;
+            animation: pulse 2s infinite;
         }
 
         .btn-gold:hover {
             opacity: 0.9;
         }
 
-        /* ==========================================
-           FOOTER
-           ========================================== */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -395,7 +323,6 @@ body.loaded .curtain-overlay {
             margin-bottom: 10px;
         }
 
-        /* Scroll Animations (Fade In) */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -407,48 +334,25 @@ body.loaded .curtain-overlay {
             transform: translateY(0);
         }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             header nav { display: none; }
             .couple-names { font-size: 2.3rem; }
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .curtain-overlay {
-    pointer-events: auto; /* ക്ലിക്ക് വർക്ക് ചെയ്യാൻ വേണ്ടി */
-}
-
-.intro-card {
-    pointer-events: auto;
-    z-index: 10001;
-}
-
-/* ഓപ്പൺ ബട്ടൺ കൂടുതൽ മനോഹരമാക്കാൻ */
-#openBtn {
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-}
     </style>
 </head>
 <body>
+
     <!-- Curtain Opening Animation Structure -->
-<div class="curtain-overlay" id="introCard">
-    <div style="font-size: 1.3rem; margin-bottom: 12px; color: var(--gold-primary);">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-    <div class="divider">✦ ✦ ✦</div>
-    <h2 style="font-size: 1.5rem; margin: 15px 0; color: var(--gold-light);">Naseefa Paravin & Afsal</h2>
-    <p style="letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 25px; color: var(--text-muted);">WEDDING INVITATION</p>
-    
-    <button id="openBtn" class="btn-gold" style="cursor: pointer; border: none; padding: 12px 30px; font-size: 1rem; border-radius: 30px; background: linear-gradient(135deg, #d4af37, #aa771c); color: #000; font-weight: bold;">
-        Open Invitation <i class="fa-solid fa-envelope-open" style="margin-left: 8px;"></i>
-    </button>
-</div>
+    <div class="curtain-overlay">
+        <div style="font-size: 1.3rem; margin-bottom: 12px; color: var(--gold-primary);">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+        <div class="divider">✦ ✦ ✦</div>
+        <h2 style="font-size: 1.5rem; margin: 15px 0; color: var(--gold-light);">Naseefa Paravin & Afsal</h2>
+        <p style="letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 25px; color: var(--text-muted);">WEDDING INVITATION</p>
+        
+        <button id="openBtn" class="btn-gold">
+            Open Invitation <i class="fa-solid fa-envelope-open" style="margin-left: 8px;"></i>
+        </button>
+    </div>
 
     <!-- Background Effects -->
     <div class="bg-pattern"></div>
@@ -503,45 +407,7 @@ body.loaded .curtain-overlay {
                 </div>
             </div>
         </section>
-        
-<!-- Blessings Section with Separate Boxes -->
-        <section class="content-section" id="blessings">
-            <div style="text-align: center;">
-                <h2 class="section-title">Ways to Bless Us</h2>
-                <div class="divider">✦ ✦ ✦</div>
-            </div>
 
-            <div class="grid-cards">
-                <!-- 1. Pray Box -->
-                <div class="card reveal">
-                    <i class="fa-solid fa-heart" style="font-size: 2.2rem; color: var(--gold-primary); margin-bottom: 15px;"></i>
-                    <h3 style="color: var(--gold-light); margin-bottom: 10px;">Pray</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Keep us in your valuable Duas and prayers.</p>
-                </div>
-
-                <!-- 2. Give Blessings Box -->
-                <div class="card reveal">
-                    <i class="fa-solid fa-hands-praying" style="font-size: 2.2rem; color: var(--gold-primary); margin-bottom: 15px;"></i>
-                    <h3 style="color: var(--gold-light); margin-bottom: 10px;">Give Blessings</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">May Allah bless this new journey of our life.</p>
-                </div>
-
-                <!-- 3. Support Box -->
-                <div class="card reveal">
-                    <i class="fa-solid fa-hands-holding-child" style="font-size: 2.2rem; color: var(--gold-primary); margin-bottom: 15px;"></i>
-                    <h3 style="color: var(--gold-light); margin-bottom: 10px;">Support</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Encourage and guide us always in our life ahead.</p>
-                </div>
-
-                <!-- 4. Love Box -->
-                <div class="card reveal">
-                    <i class="fa-solid fa-face-smile-beam" style="font-size: 2.2rem; color: var(--gold-primary); margin-bottom: 15px;"></i>
-                    <h3 style="color: var(--gold-light); margin-bottom: 10px;">Love</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Shower us with your warmth, love, and good wishes.</p>
-                </div>
-            </div>
-        </section>
-        
         <!-- Prayers Section -->
         <section class="content-section" id="prayers">
             <h2 class="section-title" style="text-align: center;">Our Beloved Prayers</h2>
@@ -564,93 +430,25 @@ body.loaded .curtain-overlay {
                 </div>
             </div>
         </section>
-        
+
         <!-- Blessings Section -->
         <section class="content-section" id="blessings">
             <div style="text-align: center;">
-                <h2 class="section-title">Ways to Bless the Newly Married Couple</h2>
+                <h2 class="section-title">Ways to Bless the Couple</h2>
                 <div class="divider">✦ ✦ ✦</div>
             </div>
-
             <div class="grid-cards">
-
-                <!-- For Bride Card -->
-                <div class="card reveal" style="text-align: left;">
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <i class="fa-solid fa-person-dress" style="font-size: 2.2rem;"></i>
-                        <h3 style="margin-top: 10px; color: var(--gold-light);">For Naseefa Paravin</h3>
-                    </div>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <span style="color: var(--gold-primary);"><i class="fa-solid fa-heart"></i></span>
-                            <div>
-                                <h4 style="font-size: 0.95rem; color: var(--text-light);">Pray</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Keep her in your Duas</p>
-                            </div>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <span style="color: var(--gold-primary);"><i class="fa-solid fa-hands-praying"></i></span>
-                            <div>
-                                <h4 style="font-size: 0.95rem; color: var(--text-light);">Give Blessings</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">May Allah bless her journey</p>
-                            </div>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <span style="color: var(--gold-primary);"><i class="fa-solid fa-hands-holding-child"></i></span>
-                            <div>
-                                <h4 style="font-size: 0.95rem; color: var(--text-light);">Support</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Encourage her always</p>
-                            </div>
-                        </li>
-                        <li style="display: flex; align-items: flex-start; gap: 12px;">
-                            <span style="color: var(--gold-primary);"><i class="fa-solid fa-face-smile-beam"></i></span>
-                            <div>
-                                <h4 style="font-size: 0.95rem; color: var(--text-light);">Love</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Shower her with love</p>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="card reveal">
+                    <i class="fa-solid fa-person-dress" style="font-size: 2.2rem;"></i>
+                    <h3 style="margin-top: 10px;">For Naseefa Paravin</h3>
+                    <p>Keep her in your valuable Duas, support, and shower her with love.</p>
+                </div>
+                <div class="card reveal">
+                    <i class="fa-solid fa-user-tie" style="font-size: 2.2rem;"></i>
+                    <h3 style="margin-top: 10px;">For Afsal</h3>
+                    <p>Keep him in your valuable Duas, support, and shower him with love.</p>
                 </div>
             </div>
-
-             <!-- For Groom Card -->
-                <div class="card reveal" style="text-align: left;">
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <i class="fa-solid fa-user-tie" style="font-size: 2.2rem;"></i>
-                        <h3 style="margin-top: 10px; color: var(--gold-light);">For Afsal</h3>
-                    </div>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <span style="color: var(--gold-primary);"><i class="fa-solid fa-heart"></i></span>
-                            <div>
-                                <h4 style="font-size: 0.95rem; color: var(--text-light);">Pray</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Keep him in your Duas</p>
-                            </div>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <span style="color: var(--gold-primary);"><i class="fa-solid fa-hands-praying"></i></span>
-                            <div>
-                                <h4 style="font-size: 0.95rem; color: var(--text-light);">Give Blessings</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">May Allah bless his journey</p>
-                            </div>
-                        </li>
-                        <li style="margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px;">
-                            <span style="color: var(--gold-primary);"><i class="fa-solid fa-hands-holding-child"></i></span>
-                            <div>
-                                <h4 style="font-size: 0.95rem; color: var(--text-light);">Support</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Encourage him always</p>
-                            </div>
-                        </li>
-                        <li style="display: flex; align-items: flex-start; gap: 12px;">
-                            <span style="color: var(--gold-primary);"><i class="fa-solid fa-face-smile-beam"></i></span>
-                            <div>
-                                <h4 style="font-size: 0.95rem; color: var(--text-light);">Love</h4>
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Shower him with love</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            
         </section>
 
         <!-- Family Details Section -->
@@ -658,50 +456,34 @@ body.loaded .curtain-overlay {
             <h2 class="section-title" style="text-align: center;">Family Details</h2>
             <div class="divider">✦ ✦ ✦</div>
             <div class="grid-cards">
-                <!-- Bride Family Card -->
                 <div class="card reveal">
-                    <!-- Replace avatar image source if needed -->
                     <h3>Bride's Family</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-user"></i> <strong>Father:</strong> Abdul Nazer</li>
-                        <li><i class="fa-solid fa-user"></i> <strong>Mother:</strong> Sameera</li>
-                    </ul>
+                    <p style="margin-top: 10px;"><strong>Father:</strong> Abdul Nazer</p>
+                    <p><strong>Mother:</strong> Sameera</p>
                 </div>
-                <!-- Groom's Family Card -->
                 <div class="card reveal">
-                    <!-- Replace avatar image source if needed -->
                     <h3>Groom's Family</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-user"></i> <strong>Father:</strong> Abdussalma</li>
-                        <li><i class="fa-solid fa-user"></i> <strong>Mother:</strong> Asiya</li>
-                    </ul>
+                    <p style="margin-top: 10px;"><strong>Father:</strong> Abdussalma</p>
+                    <p><strong>Mother:</strong> Asiya</p>
                 </div>
             </div>
         </section>
 
-        <!-- Location Section -->
+        <!-- Location Sections -->
         <section class="content-section" id="location">
-            <h2 class="section-title" style="text-align: center;">Nikah Venue</h2>
+            <h2 class="section-title" style="text-align: center;">Venues & Location</h2>
             <div class="divider">✦ ✦ ✦</div>
-            <div class="location-container reveal">
+            <div class="location-container reveal" style="margin-bottom: 20px;">
                 <i class="fa-solid fa-location-dot" style="font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 15px;"></i>
-                <h3>Masjid</h3>
+                <h3>Nikah Venue (Masjid)</h3>
                 <p style="color: var(--text-muted); margin-top: 5px;">Ottummal south Sunni Juma Masjid, Parappanangadi, Kerala</p>
-                <!-- Replace with Google Maps Link -->
-                <a href="https://maps.app.goo.gl/PfpZT2KX2VpqN98Q8" target="_blank" class="btn-gold">Get Directions <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="https://maps.app.goo.gl/PfpZT2KX2VpqN98Q8" target="_blank" class="btn-gold" style="animation: none;">Get Directions <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-        </section>
-
-             <!-- Location Section -->
-        <section class="content-section" id="location">
-            <h2 class="section-title" style="text-align: center;">Reception Venue</h2>
-            <div class="divider">✦ ✦ ✦</div>
             <div class="location-container reveal">
                 <i class="fa-solid fa-location-dot" style="font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 15px;"></i>
-                <h3>Auditorium</h3>
+                <h3>Reception Venue (Auditorium)</h3>
                 <p style="color: var(--text-muted); margin-top: 5px;">Peace Convention Centre, Kodappali, Parappanangadi, Kerala</p>
-                <!-- Replace with Google Maps Link -->
-                <a href="https://maps.google.com" target="_blank" class="btn-gold">Get Directions <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="https://maps.app.goo.gl/PfpZT2KX2VpqN98Q8" target="_blank" class="btn-gold" style="animation: none;">Get Directions <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </section>
     </main>
@@ -715,68 +497,56 @@ body.loaded .curtain-overlay {
 
     <!-- JavaScript Logic -->
     <script>
-     // 1. Click to Open Animation
-const openBtn = document.getElementById('openBtn');
+        // Typing Animation Setup
+        const namesText = "Naseefa Paravin & Afsal";
+        let index = 0;
 
-if (openBtn) {
-    openBtn.addEventListener('click', () => {
-        document.body.classList.add('loaded');
-        
-        if (typeof typeWriter === 'function') {
-            setTimeout(typeWriter, 800);
+        function typeWriter() {
+            const typedElement = document.getElementById("typedNames");
+            if (typedElement && index < namesText.length) {
+                typedElement.innerHTML += namesText.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
         }
-    });
-}
+
+        // 1. Click to Open Curtain Animation
+        const openBtn = document.getElementById('openBtn');
+
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                document.body.classList.add('loaded');
+                
+                // കർട്ടൻ മാറി കഴിഞ്ഞതിന് ശേഷം ടൈപ്പിംഗ് ആനിമേഷൻ സ്റ്റാർട്ട് ചെയ്യാൻ
+                if (typeof typeWriter === 'function') {
+                    setTimeout(typeWriter, 800);
+                }
+            });
+        }
 
         // 2. Countdown Timer
-const weddingDate = new Date("Nov 29, 2026 10:00:00").getTime();
+        const weddingDate = new Date("Nov 29, 2026 10:00:00").getTime();
 
-const updateTimer = () => {
-    const now = new Date().getTime();
-    const difference = weddingDate - now;
+        const updateTimer = () => {
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
 
-    if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
-    }
-};
+                document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+                document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+        };
 
-setInterval(updateTimer, 1000);
-updateTimer();
-// Typing Animation for Couple Names
-const namesText = "Naseefa Paravin & Afsal"; // നിങ്ങളുടെ പേരുകൾ ഇവിടെ നൽകിയിട്ടുണ്ട്
-let index = 0;
+        setInterval(updateTimer, 1000);
+        updateTimer();
 
-function typeWriter() {
-    const typedElement = document.getElementById("typedNames");
-    if (typedElement && index < namesText.length) {
-        typedElement.innerHTML += namesText.charAt(index);
-        index++;
-        setTimeout(typeWriter, 100);
-    }
-}
-const openBtn = document.getElementById('openBtn');
-
-if (openBtn) {
-    openBtn.addEventListener('click', () => {
-        document.body.classList.add('loaded');
-        
-        // കർട്ടൻ മാറി കഴിഞ്ഞതിന് ശേഷം മാത്രം ടൈപ്പിംഗ് ആനിമേഷൻ സ്റ്റാർട്ട് ചെയ്യാൻ
-        if (typeof typeWriter === 'function') {
-            setTimeout(typeWriter, 800);
-        }
-    });
-}
-window.addEventListener('load', () => {
-    setTimeout(typeWriter, 1500);
-});
         // 3. Scroll Reveal Animation
         const revealOnScroll = () => {
             const reveals = document.querySelectorAll('.reveal');
@@ -793,7 +563,7 @@ window.addEventListener('load', () => {
         };
 
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
+        revealOnScroll();
     </script>
 </body>
 </html>
