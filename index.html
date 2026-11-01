@@ -47,7 +47,7 @@
         /* ==========================================
            CURTAIN & INITIAL DOOR ANIMATION (Opening Animation)
            ========================================== */
-  .curtain-overlay {
+.curtain-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -55,14 +55,13 @@
     height: 100vh;
     background-color: #0b0b0b;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column; /* ഇത് പുതിയതായി ചേർക്കുക */
     justify-content: center;
     align-items: center;
-    text-align: center;    
+    text-align: center;     /* ഇത് പുതിയതായി ചേർക്കുക */
     z-index: 99999;
     transition: transform 1s ease-in-out, opacity 0.8s ease-in-out;
 }
-
 body.loaded .curtain-overlay {
     transform: translateY(-100%);
     opacity: 0;
