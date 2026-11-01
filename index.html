@@ -456,7 +456,7 @@
         <section class="hero" id="home">
             <div class="bismillah reveal">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
             <div class="subtitle reveal">The Wedding of</div>
-            <h1 class="couple-names reveal">Naseefa Paravin <span class="cursive" style="color: var(--text-light);">&</span> Afsal</h1>
+            <h1 class="couple-names reveal" id="typedNames"></h1>
             <div class="divider reveal">✦ ✦ ✦</div>
             <div class="wedding-date reveal">Sunday · 29 Nov 2026</div>
             <div class="wedding-venue reveal">Peace Convention Centre, Kodappali, Parappanangadi</div>
@@ -493,8 +493,8 @@
             <div class="grid-cards">
                <div class="card reveal">
                     <i class="fa-solid fa-hands-praying"></i>
-                    <h3>Dua for Guests</h3>
-                    <p>Jazakum Allah Khair for being a part of our special celebrations.</p>
+                    <h3>Dua for the Couple</h3>
+                    <p>May Allah bless them with happiness, peace, and eternal togetherness.</p>
                 </div>
                 <div class="card reveal">
                     <i class="fa-solid fa-heart"></i>
@@ -600,7 +600,22 @@ const updateTimer = () => {
 
 setInterval(updateTimer, 1000);
 updateTimer();
+// Typing Animation for Couple Names
+const namesText = "Naseefa Paravin & Afsal"; // നിങ്ങളുടെ പേരുകൾ ഇവിടെ നൽകിയിട്ടുണ്ട്
+let index = 0;
 
+function typeWriter() {
+    const typedElement = document.getElementById("typedNames");
+    if (typedElement && index < namesText.length) {
+        typedElement.innerHTML += namesText.charAt(index);
+        index++;
+        setTimeout(typeWriter, 100);
+    }
+}
+
+window.addEventListener('load', () => {
+    setTimeout(typeWriter, 1500);
+});
         // 3. Scroll Reveal Animation
         const revealOnScroll = () => {
             const reveals = document.querySelectorAll('.reveal');
