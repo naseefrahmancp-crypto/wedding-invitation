@@ -20,13 +20,14 @@
       html { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="bg-stone-950 text-stone-100 font-poppins selection:bg-amber-500 selection:text-stone-950">
+<body class="bg-amber-50/50 text-slate-800 font-poppins selection:bg-amber-500 selection:text-white">
 
     <!-- 0. Welcome Open Card Overlay (കവർ ഓപ്പൺ ചെയ്യുന്ന ഇഫക്റ്റ്) -->
     <div id="welcome-card" class="fixed inset-0 z-[100] bg-amber-50/95 backdrop-blur-md flex flex-col items-center justify-center text-center p-6 transition-all duration-700">
         <div class="font-amiri text-2xl text-amber-700 mb-4">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
         <span class="text-xs uppercase tracking-widest text-amber-800/70 mb-2">The Wedding Invitation</span>
-        <h2 class="font-playfair text-3xl md:text-5xl font-bold text-amber-900 mb-4">Naseefa Paravin <br>&<br> Afsal</h2>
+        <h2 class="font-playfair text-3xl md:text-5xl font-bold text-amber-900 mb-4">Muhammed Shameem <br>&<br> Nabeela Narjisa</h2>
+        <p class="text-slate-600 text-sm mb-8">ക്ഷണക്കത്ത് തുറക്കാൻ താഴെ ക്ലിക്ക് ചെയ്യുക</p>
         <button onclick="openCard()" class="bg-amber-600 hover:bg-amber-700 text-white font-medium px-8 py-3 rounded-full transition duration-300 transform hover:scale-105 shadow-lg shadow-amber-600/20">
             Open Invitation ✉️
         </button>
@@ -36,7 +37,7 @@
     <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-amber-100 shadow-sm">
       <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
         <!-- ഷോർട്ട് നെയിം -->
-        <a href="#" class="font-playfair text-xl font-bold text-amber-700">N & A</a>
+        <a href="#" class="font-playfair text-xl font-bold text-amber-700">M & N</a>
         <nav class="hidden md:flex space-x-6 text-sm text-slate-600">
           <a href="#home" class="hover:text-amber-700 transition">Home</a>
           <a href="#prayers" class="hover:text-amber-700 transition">Prayers</a>
@@ -59,14 +60,14 @@
         
         <!-- പ്രധാന പേരുകൾ -->
         <h1 data-aos="zoom-in" data-aos-delay="400" class="font-playfair text-4xl md:text-6xl font-bold my-6 text-amber-900">
-          Naseefa Paravin <span class="text-amber-600">&</span> Afsal
+          Muhammed Shameem <span class="text-amber-600">&</span> Nabeela Narjisa
         </h1>
         
         <div data-aos="zoom-in" data-aos-delay="600" class="w-24 h-1 bg-amber-500 mx-auto my-4 rounded-full"></div>
         
         <!-- തീയതി -->
         <p data-aos="fade-up" data-aos-delay="700" class="text-lg md:text-xl font-medium text-slate-700">
-          Sunday · 29 Nov 2026
+          Sunday · 13 Sep 2026
         </p>
       </section>
 
@@ -114,36 +115,7 @@
         </div>
       </section>
 
-        <!-- 4. Family Details Section -->
-      <section id="family" class="py-12 my-8">
-        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-400 mb-10">Family Details</h2>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-          
-          <!-- Groom Family Card -->
-          <div data-aos="fade-right" class="bg-stone-900 p-6 rounded-2xl border border-stone-800 shadow-lg hover:border-amber-500/50 transition duration-300">
-            <!-- <!-- ഇവിടെ എഡിറ്റ് ചെയ്യാം: വരന്റെ പേര് -->
-            <h3 class="font-playfair text-2xl text-amber-300 mb-4 pb-2 border-b border-stone-800">Bride's Family</h3>
-            <ul class="space-y-3 text-stone-300">
-              <li><strong class="text-amber-400">Father:</strong> Abdul Nazer</li>
-              <li><strong class="text-amber-400">Mother:</strong> Sameera</li>
-              </ul>
-          </div>
-
-          <!-- Groom Family Card -->
-          <div data-aos="fade-left" class="bg-stone-900 p-6 rounded-2xl border border-stone-800 shadow-lg hover:border-amber-500/50 transition duration-300">
-            <!-- <!-- ഇവിടെ എഡിറ്റ് ചെയ്യാം: വധുവിന്റെ പേര് -->
-            <h3 class="font-playfair text-2xl text-amber-300 mb-4 pb-2 border-b border-stone-800">Groom's Family</h3>
-            <ul class="space-y-3 text-stone-300">
-              <li><strong class="text-amber-400">Father:</strong> Abdusalam</li>
-              <li><strong class="text-amber-400">Mother:</strong> Asiya</li>
-            </ul>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- 5. Venues & Locations Section (Nikah & Reception) -->
+      <!-- 4. Venues & Locations Section (Nikah & Reception) -->
       <section id="venues" class="py-12 my-8">
         <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-900 mb-10">Event Venues</h2>
         
@@ -155,12 +127,12 @@
               <span class="text-amber-800 font-medium uppercase tracking-wider text-xs bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Solemnization</span>
               <h3 class="font-playfair text-2xl text-amber-900 mt-3 mb-2">Nikah Venue</h3>
               
-              <p class="text-lg font-medium text-slate-800 mt-4">Ottummal South Sunni Juma Masjid</p>
-              <p class="text-slate-500 text-sm mt-1">സ്Ottummal South, Parappanangadi</p>
-              <p class="text-amber-700 text-sm mt-3 font-semibold">Time: 10:30 AM</p>
+              <p class="text-lg font-medium text-slate-800 mt-4">മസ്‌ജിദ് / സ്ഥലം പേര്</p>
+              <p class="text-slate-500 text-sm mt-1">സ്ഥലത്തിന്റെ വിലാസം ഇവിടെ നൽകുക</p>
+              <p class="text-amber-700 text-sm mt-3 font-semibold">Time: 10:00 AM</p>
             </div>
             
-            <a href="https://maps.app.goo.gl/PfpZT2KX2VpqN98Q8" target="_blank" 
+            <a href="https://maps.google.com" target="_blank" 
                class="mt-6 inline-block bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-medium px-6 py-2.5 rounded-full transition duration-300 text-sm">
                 Get Directions (Nikah Venue)
             </a>
@@ -172,12 +144,12 @@
               <span class="text-amber-800 font-medium uppercase tracking-wider text-xs bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Celebration</span>
               <h3 class="font-playfair text-2xl text-amber-900 mt-3 mb-2">Reception Venue</h3>
               
-              <p class="text-lg font-medium text-slate-800 mt-4">Peace Convention Centre</p>
-              <p class="text-slate-500 text-sm mt-1">Kodappali, Parappanangadi</p>
-              <p class="text-amber-700 text-sm mt-3 font-semibold">Time: 10:00 AM Onwards</p>
+              <p class="text-lg font-medium text-slate-800 mt-4">Darussalam Madrassa</p>
+              <p class="text-slate-500 text-sm mt-1">Vettom, Pariyapuram</p>
+              <p class="text-amber-700 text-sm mt-3 font-semibold">Time: 11:30 AM Onwards</p>
             </div>
             
-            <a href="https://maps.app.goo.gl/ejFWj4gEx5gN8XTa7" target="_blank" 
+            <a href="https://maps.google.com" target="_blank" 
                class="mt-6 inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-2.5 rounded-full transition duration-300 text-sm shadow-lg shadow-amber-600/20">
                 Get Directions (Reception Venue)
             </a>
@@ -219,7 +191,7 @@
         }, 700);
       }
 
-      const weddingDate = new Date("Nov 29, 2026 10:00:00").getTime();
+      const weddingDate = new Date("Sep 13, 2026 10:00:00").getTime();
 
       const timer = setInterval(function() {
         const now = new Date().getTime();
