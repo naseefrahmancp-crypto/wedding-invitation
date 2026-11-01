@@ -416,21 +416,40 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .curtain-overlay {
+    pointer-events: auto; /* ക്ലിക്ക് വർക്ക് ചെയ്യാൻ വേണ്ടി */
+}
+
+.intro-card {
+    pointer-events: auto;
+    z-index: 10001;
+}
+
+/* ഓപ്പൺ ബട്ടൺ കൂടുതൽ മനോഹരമാക്കാൻ */
+#openBtn {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
     </style>
 </head>
 <body>
 
     <!-- Curtain Opening Animation Structure -->
-    <div class="curtain-overlay">
-        <div class="curtain-left"></div>
-        <div class="curtain-right"></div>
-    </div>
-    <div class="intro-card" id="introCard">
-        <div style="font-size: 1.2rem; margin-bottom: 10px;">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-        <div class="divider">✦ ✦ ✦</div>
-        <h2>Bride & Groom</h2>
-        <p style="letter-spacing: 2px; font-size: 0.8rem; margin-top: 5px;">WEDDING INVITATION</p>
-    </div>
+  <div class="intro-card" id="introCard">
+    <div style="font-size: 1.2rem; margin-bottom: 10px;">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <div class="divider">✦ ✦ ✦</div>
+    <h2>Naseefa Paravin & Afsal</h2>
+    <p style="letter-spacing: 2px; font-size: 0.8rem; margin-top: 5px;">WEDDING INVITATION</p>
+      
+    <button id="openBtn" class="btn-gold" style="margin-top: 25px; cursor: pointer; border: none;">
+        Open Invitation <i class="fa-solid fa-envelope-open"></i>
+    </button>
+</div>
 
     <!-- Background Effects -->
     <div class="bg-pattern"></div>
@@ -657,12 +676,18 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // 1. Curtain & Page Load Animation
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-            }, 1000); // 1-second delay before opening doors
-        });
+     // 1. Click to Open Animation
+const openBtn = document.getElementById('openBtn');
+
+if (openBtn) {
+    openBtn.addEventListener('click', () => {
+        document.body.classList.add('loaded');
+        
+        if (typeof typeWriter === 'function') {
+            setTimeout(typeWriter, 800);
+        }
+    });
+}
 
         // 2. Countdown Timer
 const weddingDate = new Date("Nov 29, 2026 10:00:00").getTime();
