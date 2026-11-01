@@ -20,25 +20,27 @@
       html { scroll-behavior: smooth; }
     </style>
 </head>
-<!-- Welcome Open Card Overlay (കവർ ഓപ്പൺ ചെയ്യുന്ന ഭാഗം) -->
-    <div id="welcome-card" class="fixed inset-0 z-[100] bg-slate-100 flex flex-col items-center justify-center text-center p-6 transition-all duration-700">
-        <div class="font-amiri text-2xl text-amber-400 mb-4">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-        <h2 class="font-playfair text-3xl md:text-5xl font-bold text-amber-200 mb-4">Wedding Invitation</h2>
-                <button onclick="openCard()" class="bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/20">
+<body class="bg-amber-50/50 text-slate-800 font-poppins selection:bg-amber-500 selection:text-white">
+
+    <!-- 0. Welcome Open Card Overlay (കവർ ഓപ്പൺ ചെയ്യുന്ന ഇഫക്റ്റ്) -->
+    <div id="welcome-card" class="fixed inset-0 z-[100] bg-amber-50/95 backdrop-blur-md flex flex-col items-center justify-center text-center p-6 transition-all duration-700">
+        <div class="font-amiri text-2xl text-amber-700 mb-4">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+        <span class="text-xs uppercase tracking-widest text-amber-800/70 mb-2">The Wedding Invitation</span>
+        <h2 class="font-playfair text-3xl md:text-5xl font-bold text-amber-900 mb-4">Naseefa Paravin <br>&<br> Afsal</h2>
+        <button onclick="openCard()" class="bg-amber-600 hover:bg-amber-700 text-white font-medium px-8 py-3 rounded-full transition duration-300 transform hover:scale-105 shadow-lg shadow-amber-600/20">
             Open Invitation ✉️
         </button>
     </div>
-<body class="bg-slate-50 text-slate-800 font-poppins selection:bg-amber-500 selection:text-white">
 
     <!-- Header Navigation -->
-   <header class="sticky top-0 z-50 bg-slate-100/80 backdrop-blur-md border-b border-slate-200">
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-amber-100 shadow-sm">
       <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
         <!-- ഷോർട്ട് നെയിം -->
-        <a href="#" class="font-playfair text-xl font-bold text-amber-400">N & A</a>
-        <nav class="hidden md:flex space-x-6 text-sm text-stone-300">
-          <a href="#home" class="hover:text-amber-400 transition">Home</a>
-          <a href="#prayers" class="hover:text-amber-400 transition">Prayers</a>
-          <a href="#venues" class="hover:text-amber-400 transition">Venues</a>
+        <a href="#" class="font-playfair text-xl font-bold text-amber-700">N & A</a>
+        <nav class="hidden md:flex space-x-6 text-sm text-slate-600">
+          <a href="#home" class="hover:text-amber-700 transition">Home</a>
+          <a href="#prayers" class="hover:text-amber-700 transition">Prayers</a>
+          <a href="#venues" class="hover:text-amber-700 transition">Venues</a>
         </nav>
       </div>
     </header>
@@ -48,106 +50,135 @@
       
       <!-- 1. Hero Section -->
       <section id="home" class="min-h-[85vh] flex flex-col justify-center items-center text-center py-16">
-        <div data-aos="fade-down" data-aos-duration="1000" class="font-amiri text-2xl text-amber-400 mb-4">
+        <div data-aos="fade-down" data-aos-duration="1000" class="font-amiri text-2xl text-amber-700 mb-4">
           بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
         </div>
-        <p data-aos="fade-up" data-aos-delay="200" class="text-stone-400 uppercase tracking-widest text-xs md:text-sm">
+        <p data-aos="fade-up" data-aos-delay="200" class="text-slate-500 uppercase tracking-widest text-xs md:text-sm">
           The Wedding of
         </p>
         
         <!-- പ്രധാന പേരുകൾ -->
-        <h1 data-aos="zoom-in" data-aos-delay="400" class="font-playfair text-4xl md:text-6xl font-bold my-6 text-amber-200">
-          Naseefa Paravin <span class="text-amber-400">&</span> Afsal
+        <h1 data-aos="zoom-in" data-aos-delay="400" class="font-playfair text-4xl md:text-6xl font-bold my-6 text-amber-900">
+          Naseefa Paravin <span class="text-amber-600">&</span> Afsal
         </h1>
         
-        <div data-aos="zoom-in" data-aos-delay="600" class="w-24 h-1 bg-amber-400 mx-auto my-4 rounded-full"></div>
+        <div data-aos="zoom-in" data-aos-delay="600" class="w-24 h-1 bg-amber-500 mx-auto my-4 rounded-full"></div>
         
         <!-- തീയതി -->
-        <p data-aos="fade-up" data-aos-delay="700" class="text-lg md:text-xl font-medium text-stone-300">
+        <p data-aos="fade-up" data-aos-delay="700" class="text-lg md:text-xl font-medium text-slate-700">
           Sunday · 29 Nov 2026
         </p>
       </section>
 
       <!-- 2. Countdown Timer Section -->
-      <section data-aos="fade-up" class="py-12 my-8 bg-stone-900/60 rounded-2xl border border-stone-800 text-center shadow-xl">
-        <h2 class="font-playfair text-2xl md:text-3xl text-amber-400 mb-6">Counting Down to Our Big Day</h2>
+      <section data-aos="fade-up" class="py-12 my-8 bg-white rounded-2xl border border-amber-100 text-center shadow-xl shadow-amber-900/5">
+        <h2 class="font-playfair text-2xl md:text-3xl text-amber-900 mb-6">Counting Down to Our Big Day</h2>
         
         <div id="countdown" class="grid grid-cols-4 gap-2 md:gap-6 max-w-md mx-auto px-4">
-          <div class="bg-stone-950 border border-stone-800 p-3 md:p-4 rounded-xl">
-            <span id="days" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-400">00</span>
-            <span class="text-xs text-stone-400 uppercase">Days</span>
+          <div class="bg-amber-50/50 border border-amber-200 p-3 md:p-4 rounded-xl">
+            <span id="days" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-800">00</span>
+            <span class="text-xs text-slate-500 uppercase">Days</span>
           </div>
-          <div class="bg-stone-950 border border-stone-800 p-3 md:p-4 rounded-xl">
-            <span id="hours" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-400">00</span>
-            <span class="text-xs text-stone-400 uppercase">Hours</span>
+          <div class="bg-amber-50/50 border border-amber-200 p-3 md:p-4 rounded-xl">
+            <span id="hours" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-800">00</span>
+            <span class="text-xs text-slate-500 uppercase">Hours</span>
           </div>
-          <div class="bg-stone-950 border border-stone-800 p-3 md:p-4 rounded-xl">
-            <span id="minutes" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-400">00</span>
-            <span class="text-xs text-stone-400 uppercase">Minutes</span>
+          <div class="bg-amber-50/50 border border-amber-200 p-3 md:p-4 rounded-xl">
+            <span id="minutes" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-800">00</span>
+            <span class="text-xs text-slate-500 uppercase">Minutes</span>
           </div>
-          <div class="bg-stone-950 border border-stone-800 p-3 md:p-4 rounded-xl">
-            <span id="seconds" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-400">00</span>
-            <span class="text-xs text-stone-400 uppercase">Seconds</span>
+          <div class="bg-amber-50/50 border border-amber-200 p-3 md:p-4 rounded-xl">
+            <span id="seconds" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-800">00</span>
+            <span class="text-xs text-slate-500 uppercase">Seconds</span>
           </div>
         </div>
       </section>
 
       <!-- 3. Prayers Section -->
       <section id="prayers" class="py-12 my-8">
-        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-400 mb-8">Our Beloved Prayers</h2>
+        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-900 mb-8">Our Beloved Prayers</h2>
         
         <div class="grid md:grid-cols-3 gap-6">
-          <div data-aos="fade-up" data-aos-delay="100" class="bg-stone-900 p-6 rounded-xl border border-stone-800 text-center">
-            <h3 class="font-playfair text-xl text-amber-300 mb-2">Dua for the Couple</h3>
-            <p class="text-stone-400 text-sm">May Allah bless them with love, peace, and eternal happiness together.</p>
+          <div data-aos="fade-up" data-aos-delay="100" class="bg-white p-6 rounded-xl border border-amber-100 text-center shadow-sm">
+            <h3 class="font-playfair text-xl text-amber-800 mb-2">Dua for the Couple</h3>
+            <p class="text-slate-600 text-sm">May Allah bless them with love, peace, and eternal happiness together.</p>
           </div>
-          <div data-aos="fade-up" data-aos-delay="200" class="bg-stone-900 p-6 rounded-xl border border-stone-800 text-center">
-            <h3 class="font-playfair text-xl text-amber-300 mb-2">Dua for Family</h3>
-            <p class="text-stone-400 text-sm">May Allah unite our families with goodness and strengthen our bonds.</p>
+          <div data-aos="fade-up" data-aos-delay="200" class="bg-white p-6 rounded-xl border border-amber-100 text-center shadow-sm">
+            <h3 class="font-playfair text-xl text-amber-800 mb-2">Dua for Family</h3>
+            <p class="text-slate-600 text-sm">May Allah unite our families with goodness and strengthen our bonds.</p>
           </div>
-          <div data-aos="fade-up" data-aos-delay="300" class="bg-stone-900 p-6 rounded-xl border border-stone-800 text-center">
-            <h3 class="font-playfair text-xl text-amber-300 mb-2">Dua for Guests</h3>
-            <p class="text-stone-400 text-sm">Jazakum Allah Khair for your warm presence and precious prayers.</p>
+          <div data-aos="fade-up" data-aos-delay="300" class="bg-white p-6 rounded-xl border border-amber-100 text-center shadow-sm">
+            <h3 class="font-playfair text-xl text-amber-800 mb-2">Dua for Guests</h3>
+            <p class="text-slate-600 text-sm">Jazakum Allah Khair for your warm presence and precious prayers.</p>
           </div>
         </div>
       </section>
 
-      <!-- 4. Venues & Locations Section (Nikah & Reception) -->
+        <!-- 4. Family Details Section -->
+      <section id="family" class="py-12 my-8">
+        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-400 mb-10">Family Details</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          
+          <!-- Groom Family Card -->
+          <div data-aos="fade-right" class="bg-stone-900 p-6 rounded-2xl border border-stone-800 shadow-lg hover:border-amber-500/50 transition duration-300">
+            <!-- <!-- ഇവിടെ എഡിറ്റ് ചെയ്യാം: വരന്റെ പേര് -->
+            <h3 class="font-playfair text-2xl text-amber-300 mb-4 pb-2 border-b border-stone-800">Bride's Family</h3>
+            <ul class="space-y-3 text-stone-300">
+              <li><strong class="text-amber-400">Father:</strong> Abdul Nazer</li>
+              <li><strong class="text-amber-400">Mother:</strong> Sameera</li>
+              </ul>
+          </div>
+
+          <!-- Groom Family Card -->
+          <div data-aos="fade-left" class="bg-stone-900 p-6 rounded-2xl border border-stone-800 shadow-lg hover:border-amber-500/50 transition duration-300">
+            <!-- <!-- ഇവിടെ എഡിറ്റ് ചെയ്യാം: വധുവിന്റെ പേര് -->
+            <h3 class="font-playfair text-2xl text-amber-300 mb-4 pb-2 border-b border-stone-800">Groom's Family</h3>
+            <ul class="space-y-3 text-stone-300">
+              <li><strong class="text-amber-400">Father:</strong> Abdusalam</li>
+              <li><strong class="text-amber-400">Mother:</strong> Asiya</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 5. Venues & Locations Section (Nikah & Reception) -->
       <section id="venues" class="py-12 my-8">
-        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-400 mb-10">Event Venues</h2>
+        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-900 mb-10">Event Venues</h2>
         
         <div class="grid md:grid-cols-2 gap-8">
           
           <!-- Nikah Venue Card -->
-          <div data-aos="fade-up" data-aos-delay="100" class="bg-stone-900/80 p-8 rounded-2xl border border-stone-800 text-center flex flex-col justify-between">
+          <div data-aos="fade-up" data-aos-delay="100" class="bg-white p-8 rounded-2xl border border-amber-100 text-center flex flex-col justify-between shadow-sm">
             <div>
-              <span class="text-amber-400 font-medium uppercase tracking-wider text-xs bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Solemnization</span>
-              <h3 class="font-playfair text-2xl text-amber-300 mt-3 mb-2">Nikah Venue</h3>
+              <span class="text-amber-800 font-medium uppercase tracking-wider text-xs bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Solemnization</span>
+              <h3 class="font-playfair text-2xl text-amber-900 mt-3 mb-2">Nikah Venue</h3>
               
-              <p class="text-lg font-medium text-stone-200 mt-4">Ottummal South Sunni Juma Masjid</p>
-              <p class="text-stone-400 text-sm mt-1">Ottummal South, Parappanangadi</p>
-              <p class="text-amber-400/90 text-sm mt-3 font-semibold">Time: 10:30 AM</p>
+              <p class="text-lg font-medium text-slate-800 mt-4">Ottummal South Sunni Juma Masjid</p>
+              <p class="text-slate-500 text-sm mt-1">സ്Ottummal South, Parappanangadi</p>
+              <p class="text-amber-700 text-sm mt-3 font-semibold">Time: 10:30 AM</p>
             </div>
             
             <a href="https://maps.app.goo.gl/PfpZT2KX2VpqN98Q8" target="_blank" 
-               class="mt-6 inline-block bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-amber-400 border border-amber-500/30 font-medium px-6 py-2.5 rounded-full transition duration-300 text-sm">
+               class="mt-6 inline-block bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-medium px-6 py-2.5 rounded-full transition duration-300 text-sm">
                 Get Directions (Nikah Venue)
             </a>
           </div>
 
           <!-- Reception / Wedding Venue Card -->
-          <div data-aos="fade-up" data-aos-delay="200" class="bg-stone-900/80 p-8 rounded-2xl border border-stone-800 text-center flex flex-col justify-between">
+          <div data-aos="fade-up" data-aos-delay="200" class="bg-white p-8 rounded-2xl border border-amber-100 text-center flex flex-col justify-between shadow-sm">
             <div>
-              <span class="text-amber-400 font-medium uppercase tracking-wider text-xs bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Celebration</span>
-              <h3 class="font-playfair text-2xl text-amber-300 mt-3 mb-2">Reception Venue</h3>
+              <span class="text-amber-800 font-medium uppercase tracking-wider text-xs bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Celebration</span>
+              <h3 class="font-playfair text-2xl text-amber-900 mt-3 mb-2">Reception Venue</h3>
               
-              <p class="text-lg font-medium text-stone-200 mt-4">Peace Convention Centre</p>
-              <p class="text-stone-400 text-sm mt-1">Kodappali, Parappanangadi</p>
-              <p class="text-amber-400/90 text-sm mt-3 font-semibold">Time: 10:00 AM Onwards</p>
+              <p class="text-lg font-medium text-slate-800 mt-4">Peace Convention Centre</p>
+              <p class="text-slate-500 text-sm mt-1">Kodappali, Parappanangadi</p>
+              <p class="text-amber-700 text-sm mt-3 font-semibold">Time: 11:30 AM Onwards</p>
             </div>
             
-            <a href="https://maps.app.goo.gl/knfatj7FZR1vzFMs6" target="_blank" 
-               class="mt-6 inline-block bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold px-6 py-2.5 rounded-full transition duration-300 text-sm shadow-lg shadow-amber-500/10">
+            <a href="https://maps.google.com" target="_blank" 
+               class="mt-6 inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-2.5 rounded-full transition duration-300 text-sm shadow-lg shadow-amber-600/20">
                 Get Directions (Reception Venue)
             </a>
           </div>
@@ -158,26 +189,27 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-center py-12 bg-stone-950 border-t border-stone-800 text-stone-400 text-sm mt-16">
+    <footer class="text-center py-12 bg-white border-t border-amber-100 text-slate-600 text-sm mt-16">
       <div data-aos="fade-up" class="max-w-xl mx-auto px-4">
-        <p class="font-amiri text-xl text-amber-400 mb-2">مَا شَاءَ اللَّهُ كَانَ وَمَا لَمْ يَشَأْ لَمْ يَكُنْ</p>
+        <p class="font-amiri text-xl text-amber-800 mb-2">مَا شَاءَ اللَّهُ كَانَ وَمَا لَمْ يَشَأْ لَمْ يَكُنْ</p>
         <p class="mb-4">May Allah Bless You Both and Unite You in Goodness</p>
-        <div class="w-12 h-[1px] bg-stone-800 mx-auto my-4"></div>
-        <p class="text-xs text-stone-500">With Love, Save the Date</p>
+        <div class="w-12 h-[1px] bg-amber-200 mx-auto my-4"></div>
+        <p class="text-xs text-slate-400">With Love, Save the Date</p>
       </div>
     </footer>
 
     <!-- AOS JavaScript Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Script for Animation & Countdown -->
+    <!-- Script for Animation, Open Card & Countdown -->
     <script>
       AOS.init({
         duration: 900,
         easing: 'ease-in-out',
         once: true
       });
-// Open Card Function (കവർ തുറക്കാനുള്ള ഫങ്ഷൻ)
+
+      // Open Card Function
       function openCard() {
         const card = document.getElementById('welcome-card');
         card.style.opacity = '0';
@@ -195,7 +227,7 @@
 
         if (distance < 0) {
           clearInterval(timer);
-          document.getElementById("countdown").innerHTML = "<div class='text-amber-400 text-xl col-span-4'>The Wedding Day Has Arrived!</div>";
+          document.getElementById("countdown").innerHTML = "<div class='text-amber-800 text-xl col-span-4'>The Wedding Day Has Arrived!</div>";
           return;
         }
 
