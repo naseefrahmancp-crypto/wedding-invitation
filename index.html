@@ -47,25 +47,25 @@
         /* ==========================================
            CURTAIN & INITIAL DOOR ANIMATION (Opening Animation)
            ========================================== */
-        .curtain-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 9999;
-            pointer-events: none;
-            display: flex;
-        }
+       .curtain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0b0b0b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: transform 1s ease-in-out, opacity 0.8s ease-in-out;
+}
 
-        .curtain-left, .curtain-right {
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(135deg, #0d1117 0%, #05070a 100%);
-            border-bottom: 2px solid var(--gold-primary);
-            transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1);
-            position: relative;
-        }
+body.loaded .curtain-overlay {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
 
         .curtain-left::after, .curtain-right::after {
             content: '';
@@ -437,9 +437,8 @@
     </style>
 </head>
 <body>
-
     <!-- Curtain Opening Animation Structure -->
- <div class="intro-card" id="introCard">
+<div class="curtain-overlay" id="introCard">
     <div style="font-size: 1.3rem; margin-bottom: 12px; color: var(--gold-primary);">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
     <div class="divider">✦ ✦ ✦</div>
     <h2 style="font-size: 1.5rem; margin: 15px 0; color: var(--gold-light);">Naseefa Paravin & Afsal</h2>
@@ -762,7 +761,18 @@ function typeWriter() {
         setTimeout(typeWriter, 100);
     }
 }
+const openBtn = document.getElementById('openBtn');
 
+if (openBtn) {
+    openBtn.addEventListener('click', () => {
+        document.body.classList.add('loaded');
+        
+        // കർട്ടൻ മാറി കഴിഞ്ഞതിന് ശേഷം മാത്രം ടൈപ്പിംഗ് ആനിമേഷൻ സ്റ്റാർട്ട് ചെയ്യാൻ
+        if (typeof typeWriter === 'function') {
+            setTimeout(typeWriter, 800);
+        }
+    });
+}
 window.addEventListener('load', () => {
     setTimeout(typeWriter, 1500);
 });
