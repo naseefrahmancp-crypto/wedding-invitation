@@ -106,6 +106,15 @@
             letter-spacing: 2px;
         }
 
+        /* Hamburger Menu Toggle Button (Hidden on Desktop) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -334,20 +343,46 @@
             transform: translateY(0);
         }
 
-   @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        padding: 15px;
-        gap: 10px;
-    }
-    nav ul {
-        gap: 15px;
-        font-size: 0.85rem;
-    }
-    .couple-names { 
-        font-size: 2.3rem; 
-    }
-}
+        /* Mobile Responsive & Hamburger Sidebar */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            header nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(12, 15, 20, 0.95);
+                backdrop-filter: blur(15px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease-in-out;
+                border-left: 1px solid var(--border-gold);
+                z-index: 1000;
+            }
+
+            header nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+            }
+
+            .couple-names { 
+                font-size: 2.3rem; 
+            }
+        }
     </style>
 </head>
 <body>
@@ -371,6 +406,12 @@
     <!-- Header Navigation -->
     <header>
         <a href="#" class="logo">N & A</a>
+        
+        <!-- Mobile Menu Toggle Button (Hamburger) -->
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -527,14 +568,42 @@
             openBtn.addEventListener('click', () => {
                 document.body.classList.add('loaded');
                 
-                // കർട്ടൻ മാറി കഴിഞ്ഞതിന് ശേഷം ടൈപ്പിംഗ് ആനിമേഷൻ സ്റ്റാർട്ട് ചെയ്യാൻ
                 if (typeof typeWriter === 'function') {
                     setTimeout(typeWriter, 800);
                 }
             });
         }
 
-        // 2. Countdown Timer
+        // 2. Mobile Menu Toggle Logic (Hamburger Menu)
+        const mobileMenu = document.getElementById('mobile-menu');
+        const nav = document.querySelector('header nav');
+
+        if (mobileMenu && nav) {
+            mobileMenu.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                
+                const icon = mobileMenu.querySelector('i');
+                if (nav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('header nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    const icon = mobileMenu.querySelector('i');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        // 3. Countdown Timer
         const weddingDate = new Date("Nov 29, 2026 10:00:00").getTime();
 
         const updateTimer = () => {
@@ -557,7 +626,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // 3. Scroll Reveal Animation
+        // 4. Scroll Reveal Animation
         const revealOnScroll = () => {
             const reveals = document.querySelectorAll('.reveal');
             const windowHeight = window.innerHeight;
