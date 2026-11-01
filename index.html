@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap');
+      .font-amiri { font-family: 'Amiri', serif; }
+      .font-playfair { font-family: 'Playfair Display', serif; }
+      .font-poppins { font-family: 'Poppins', sans-serif; }
+      html { scroll-behavior: smooth; }
+    </style>
+</head>
+<!-- Welcome Open Card Overlay (കവർ ഓപ്പൺ ചെയ്യുന്ന ഭാഗം) -->
+    <div id="welcome-card" class="fixed inset-0 z-[100] bg-stone-950 flex flex-col items-center justify-center text-center p-6 transition-all duration-700">
+        <div class="font-amiri text-2xl text-amber-400 mb-4">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+        <h2 class="font-playfair text-3xl md:text-5xl font-bold text-amber-200 mb-4">Wedding Invitation</h2>
+                <button onclick="openCard()" class="bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold px-8 py-3 rounded-full transition duration-300 transform hover:scale-105 shadow-lg shadow-amber-500/20">
+            Open Invitation ✉️
+        </button>
+    </div>
+<body class="bg-stone-950 text-stone-100 font-poppins selection:bg-amber-500 selection:text-stone-950">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-stone-950/80 backdrop-blur-md border-b border-stone-800">
+      <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+        <!-- ഷോർട്ട് നെയിം -->
+        <a href="#" class="font-playfair text-xl font-bold text-amber-400">N & A</a>
+        <nav class="hidden md:flex space-x-6 text-sm text-stone-300">
+          <a href="#home" class="hover:text-amber-400 transition">Home</a>
+          <a href="#prayers" class="hover:text-amber-400 transition">Prayers</a>
+          <a href="#venues" class="hover:text-amber-400 transition">Venues</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4">
+      
+      <!-- 1. Hero Section -->
+      <section id="home" class="min-h-[85vh] flex flex-col justify-center items-center text-center py-16">
+        <div data-aos="fade-down" data-aos-duration="1000" class="font-amiri text-2xl text-amber-400 mb-4">
+          بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+        </div>
+        <p data-aos="fade-up" data-aos-delay="200" class="text-stone-400 uppercase tracking-widest text-xs md:text-sm">
+          The Wedding of
+        </p>
+        
+        <!-- പ്രധാന പേരുകൾ -->
+        <h1 data-aos="zoom-in" data-aos-delay="400" class="font-playfair text-4xl md:text-6xl font-bold my-6 text-amber-200">
+          Naseefa Paravin <span class="text-amber-400">&</span> Afsal
+        </h1>
+        
+        <div data-aos="zoom-in" data-aos-delay="600" class="w-24 h-1 bg-amber-400 mx-auto my-4 rounded-full"></div>
+        
+        <!-- തീയതി -->
+        <p data-aos="fade-up" data-aos-delay="700" class="text-lg md:text-xl font-medium text-stone-300">
+          Sunday · 29 Nov 2026
+        </p>
+      </section>
+
+      <!-- 2. Countdown Timer Section -->
+      <section data-aos="fade-up" class="py-12 my-8 bg-stone-900/60 rounded-2xl border border-stone-800 text-center shadow-xl">
+        <h2 class="font-playfair text-2xl md:text-3xl text-amber-400 mb-6">Counting Down to Our Big Day</h2>
+        
+        <div id="countdown" class="grid grid-cols-4 gap-2 md:gap-6 max-w-md mx-auto px-4">
+          <div class="bg-stone-950 border border-stone-800 p-3 md:p-4 rounded-xl">
+            <span id="days" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-400">00</span>
+            <span class="text-xs text-stone-400 uppercase">Days</span>
+          </div>
+          <div class="bg-stone-950 border border-stone-800 p-3 md:p-4 rounded-xl">
+            <span id="hours" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-400">00</span>
+            <span class="text-xs text-stone-400 uppercase">Hours</span>
+          </div>
+          <div class="bg-stone-950 border border-stone-800 p-3 md:p-4 rounded-xl">
+            <span id="minutes" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-400">00</span>
+            <span class="text-xs text-stone-400 uppercase">Minutes</span>
+          </div>
+          <div class="bg-stone-950 border border-stone-800 p-3 md:p-4 rounded-xl">
+            <span id="seconds" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-400">00</span>
+            <span class="text-xs text-stone-400 uppercase">Seconds</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Prayers Section -->
+      <section id="prayers" class="py-12 my-8">
+        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-400 mb-8">Our Beloved Prayers</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          <div data-aos="fade-up" data-aos-delay="100" class="bg-stone-900 p-6 rounded-xl border border-stone-800 text-center">
+            <h3 class="font-playfair text-xl text-amber-300 mb-2">Dua for the Couple</h3>
+            <p class="text-stone-400 text-sm">May Allah bless them with love, peace, and eternal happiness together.</p>
+          </div>
+          <div data-aos="fade-up" data-aos-delay="200" class="bg-stone-900 p-6 rounded-xl border border-stone-800 text-center">
+            <h3 class="font-playfair text-xl text-amber-300 mb-2">Dua for Family</h3>
+            <p class="text-stone-400 text-sm">May Allah unite our families with goodness and strengthen our bonds.</p>
+          </div>
+          <div data-aos="fade-up" data-aos-delay="300" class="bg-stone-900 p-6 rounded-xl border border-stone-800 text-center">
+            <h3 class="font-playfair text-xl text-amber-300 mb-2">Dua for Guests</h3>
+            <p class="text-stone-400 text-sm">Jazakum Allah Khair for your warm presence and precious prayers.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Venues & Locations Section (Nikah & Reception) -->
+      <section id="venues" class="py-12 my-8">
+        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-400 mb-10">Event Venues</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          
+          <!-- Nikah Venue Card -->
+          <div data-aos="fade-up" data-aos-delay="100" class="bg-stone-900/80 p-8 rounded-2xl border border-stone-800 text-center flex flex-col justify-between">
+            <div>
+              <span class="text-amber-400 font-medium uppercase tracking-wider text-xs bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Solemnization</span>
+              <h3 class="font-playfair text-2xl text-amber-300 mt-3 mb-2">Nikah Venue</h3>
+              
+              <p class="text-lg font-medium text-stone-200 mt-4">Ottummal South Sunni Juma Masjid</p>
+              <p class="text-stone-400 text-sm mt-1">Ottummal South, Parappanangadi</p>
+              <p class="text-amber-400/90 text-sm mt-3 font-semibold">Time: 10:30 AM</p>
+            </div>
+            
+            <a href="https://maps.app.goo.gl/PfpZT2KX2VpqN98Q8" target="_blank" 
+               class="mt-6 inline-block bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-amber-400 border border-amber-500/30 font-medium px-6 py-2.5 rounded-full transition duration-300 text-sm">
+                Get Directions (Nikah Venue)
+            </a>
+          </div>
+
+          <!-- Reception / Wedding Venue Card -->
+          <div data-aos="fade-up" data-aos-delay="200" class="bg-stone-900/80 p-8 rounded-2xl border border-stone-800 text-center flex flex-col justify-between">
+            <div>
+              <span class="text-amber-400 font-medium uppercase tracking-wider text-xs bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Celebration</span>
+              <h3 class="font-playfair text-2xl text-amber-300 mt-3 mb-2">Reception Venue</h3>
+              
+              <p class="text-lg font-medium text-stone-200 mt-4">Peace Convention Centre</p>
+              <p class="text-stone-400 text-sm mt-1">Kodappali, Parappanangadi</p>
+              <p class="text-amber-400/90 text-sm mt-3 font-semibold">Time: 10:00 AM Onwards</p>
+            </div>
+            
+            <a href="https://maps.app.goo.gl/knfatj7FZR1vzFMs6" target="_blank" 
+               class="mt-6 inline-block bg-amber-500 hover:bg-amber-400 text-stone-950 font-semibold px-6 py-2.5 rounded-full transition duration-300 text-sm shadow-lg shadow-amber-500/10">
+                Get Directions (Reception Venue)
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-12 bg-stone-950 border-t border-stone-800 text-stone-400 text-sm mt-16">
+      <div data-aos="fade-up" class="max-w-xl mx-auto px-4">
+        <p class="font-amiri text-xl text-amber-400 mb-2">مَا شَاءَ اللَّهُ كَانَ وَمَا لَمْ يَشَأْ لَمْ يَكُنْ</p>
+        <p class="mb-4">May Allah Bless You Both and Unite You in Goodness</p>
+        <div class="w-12 h-[1px] bg-stone-800 mx-auto my-4"></div>
+        <p class="text-xs text-stone-500">With Love, Save the Date</p>
+      </div>
+    </footer>
+
+    <!-- AOS JavaScript Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Script for Animation & Countdown -->
+    <script>
+      AOS.init({
+        duration: 900,
+        easing: 'ease-in-out',
+        once: true
+      });
+// Open Card Function (കവർ തുറക്കാനുള്ള ഫങ്ഷൻ)
+      function openCard() {
+        const card = document.getElementById('welcome-card');
+        card.style.opacity = '0';
+        card.style.visibility = 'hidden';
+        setTimeout(() => {
+          card.style.display = 'none';
+        }, 700);
+      }
+
+      const weddingDate = new Date("Nov 29, 2026 10:00:00").getTime();
+
+      const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+          clearInterval(timer);
+          document.getElementById("countdown").innerHTML = "<div class='text-amber-400 text-xl col-span-4'>The Wedding Day Has Arrived!</div>";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+      }, 1000);
+    </script>
+</body>
+</html>
