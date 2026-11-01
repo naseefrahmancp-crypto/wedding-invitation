@@ -412,6 +412,64 @@
             header nav { display: none; }
             .couple-names { font-size: 2.3rem; }
         }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ഇവിടെ കൊടുക്കുക -> Couple Names Glow & Floating Animation */
+        .couple-names {
+            animation: zoomGlow 3s ease-in-out infinite alternate;
+            display: inline-block;
+        }
+
+        @keyframes zoomGlow {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.2);
+            }
+            100% {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 35px rgba(243, 229, 171, 0.6);
+            }
+        }
+        /* Snow/Flower Falling & Glowing Animation Effect */
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+snowflake {
+    position: absolute;
+    top: -10px;
+    color: var(--gold-primary);
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    z-index: 1;
+    opacity: 0.8;
+    text-shadow: 0 0 8px var(--gold-primary), 0 0 15px #fff;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
     </style>
 </head>
 <body>
@@ -566,6 +624,37 @@
     </footer>
 
     <!-- JavaScript Logic -->
+    <!-- Snow / Flowers Container -->
+<div class="snow-container" id="snowContainer"></div>
+
+<script>
+    // Create Falling Snow/Flowers Effect
+    const snowContainer = document.getElementById('snowContainer');
+    const symbols = ['🌸', '✨', '❄', '💮', '⭐']; // 
+
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        
+        // Random symbol pick ചെയ്യുക
+        snowflake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        // Random positioning and speed
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.animationDuration = (Math.random() * 3 + 4) + 's'; // 4 മുതൽ 7 സെക്കൻഡ് വരെ വേഗത
+        snowflake.style.fontSize = (Math.random() * 10 + 12) + 'px'; // സൈസ് വ്യത്യാസപ്പെടുത്താൻ
+        
+        snowContainer.appendChild(snowflake);
+
+        // ആനിമേഷൻ കഴിഞ്ഞാൽ എലമെന്റ് ഡിലീറ്റ് ചെയ്യുക
+        setTimeout(() => {
+            snowflake.remove();
+        }, 7000);
+    }
+
+    // ഓരോ 300 മിനിസെക്കൻഡിലും ഓരോന്ന് വീതം വീഴാൻ തുടങ്ങും
+    setInterval(createSnowflake, 300);
+</script>
     <script>
         // 1. Curtain & Page Load Animation
         window.addEventListener('load', () => {
