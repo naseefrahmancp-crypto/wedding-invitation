@@ -4,215 +4,607 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- AOS Animation CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap');
-      .font-amiri { font-family: 'Amiri', serif; }
-      .font-playfair { font-family: 'Playfair Display', serif; }
-      .font-poppins { font-family: 'Poppins', sans-serif; }
-      html { scroll-behavior: smooth; }
+        /* ==========================================
+           GLOBAL & VARIABLES (Exact Visual Theme)
+           ========================================== */
+        :root {
+            --bg-dark: #0a0c10;
+            --bg-card: #12161f;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa7c11;
+            --text-light: #f8f9fa;
+            --text-muted: #a0a6b1;
+            --border-gold: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-logo {
+            font-family: 'Cinzel', serif;
+        }
+
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* ==========================================
+           CURTAIN & INITIAL DOOR ANIMATION (Opening Animation)
+           ========================================== */
+        .curtain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            pointer-events: none;
+            display: flex;
+        }
+
+        .curtain-left, .curtain-right {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #0d1117 0%, #05070a 100%);
+            border-bottom: 2px solid var(--gold-primary);
+            transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1);
+            position: relative;
+        }
+
+        .curtain-left::after, .curtain-right::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+        }
+
+        .curtain-left { transform: translateX(0); border-right: 1px solid var(--gold-primary); }
+        .curtain-right { transform: translateX(0); border-left: 1px solid var(--gold-primary); }
+
+        body.loaded .curtain-left { transform: translateX(-100%); }
+        body.loaded .curtain-right { transform: translateX(100%); }
+
+        .intro-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10000;
+            transition: opacity 1s ease, transform 1s ease;
+            color: var(--gold-primary);
+        }
+
+        body.loaded .intro-card {
+            opacity: 0;
+            transform: translate(-50%, -60%);
+            pointer-events: none;
+        }
+
+        /* ==========================================
+           BACKGROUND PATTERN & GLOW
+           ========================================== */
+        .bg-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--border-gold) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ==========================================
+           NAVIGATION BAR
+           ========================================== */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* ==========================================
+           HERO SECTION
+           ========================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 40px;
+            position: relative;
+        }
+
+        .bismillah {
+            font-size: 1.6rem;
+            color: var(--gold-primary);
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .couple-names {
+            font-size: 3.5rem;
+            color: var(--gold-primary);
+            margin: 15px 0;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .wedding-date {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .wedding-venue {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Divider Design */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            color: var(--gold-primary);
+        }
+        .divider::before, .divider::after {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: var(--gold-primary);
+            opacity: 0.5;
+        }
+
+        /* ==========================================
+           COUNTDOWN SECTION
+           ========================================== */
+        .countdown-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 10px;
+        }
+
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 100px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .time-box span {
+            display: block;
+        }
+
+        .time-box .number {
+            font-size: 2.2rem;
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: bold;
+        }
+
+        .time-box .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* ==========================================
+           CARDS SECTION (Prayers, Blessings, Family)
+           ========================================== */
+        .content-section {
+            padding: 80px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+        }
+
+        .card i {
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+
+        .card p, .card ul {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            list-style: none;
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .card ul li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card ul li i {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        /* Family Details Special Layout */
+        .family-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--gold-primary);
+            margin: 0 auto 20px;
+            object-fit: cover;
+            background-color: var(--bg-dark);
+        }
+
+        /* ==========================================
+           LOCATION SECTION & BUTTONS
+           ========================================== */
+        .location-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-primary));
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-gold:hover {
+            opacity: 0.9;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-gold);
+            background: #06080b;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Scroll Animations (Fade In) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header nav { display: none; }
+            .couple-names { font-size: 2.3rem; }
+        }
     </style>
 </head>
-<body class="bg-amber-50/50 text-slate-800 font-poppins selection:bg-amber-500 selection:text-white">
+<body>
 
-    <!-- 0. Welcome Open Card Overlay (കവർ ഓപ്പൺ ചെയ്യുന്ന ഇഫക്റ്റ്) -->
-    <div id="welcome-card" class="fixed inset-0 z-[100] bg-amber-50/95 backdrop-blur-md flex flex-col items-center justify-center text-center p-6 transition-all duration-700">
-        <div class="font-amiri text-2xl text-amber-700 mb-4">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-        <span class="text-xs uppercase tracking-widest text-amber-800/70 mb-2">The Wedding Invitation</span>
-        <h2 class="font-playfair text-3xl md:text-5xl font-bold text-amber-900 mb-4">Muhammed Shameem <br>&<br> Nabeela Narjisa</h2>
-        <p class="text-slate-600 text-sm mb-8">ക്ഷണക്കത്ത് തുറക്കാൻ താഴെ ക്ലിക്ക് ചെയ്യുക</p>
-        <button onclick="openCard()" class="bg-amber-600 hover:bg-amber-700 text-white font-medium px-8 py-3 rounded-full transition duration-300 transform hover:scale-105 shadow-lg shadow-amber-600/20">
-            Open Invitation ✉️
-        </button>
+    <!-- Curtain Opening Animation Structure -->
+    <div class="curtain-overlay">
+        <div class="curtain-left"></div>
+        <div class="curtain-right"></div>
+    </div>
+    <div class="intro-card" id="introCard">
+        <div style="font-size: 1.2rem; margin-bottom: 10px;">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+        <div class="divider">✦ ✦ ✦</div>
+        <h2>Groom & Bride</h2>
+        <p style="letter-spacing: 2px; font-size: 0.8rem; margin-top: 5px;">WEDDING INVITATION</p>
     </div>
 
+    <!-- Background Effects -->
+    <div class="bg-pattern"></div>
+    <div class="ambient-glow"></div>
+
     <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-amber-100 shadow-sm">
-      <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
-        <!-- ഷോർട്ട് നെയിം -->
-        <a href="#" class="font-playfair text-xl font-bold text-amber-700">M & N</a>
-        <nav class="hidden md:flex space-x-6 text-sm text-slate-600">
-          <a href="#home" class="hover:text-amber-700 transition">Home</a>
-          <a href="#prayers" class="hover:text-amber-700 transition">Prayers</a>
-          <a href="#venues" class="hover:text-amber-700 transition">Venues</a>
+    <header>
+        <a href="#" class="logo">G & B</a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#prayers">Prayers</a></li>
+                <li><a href="#blessings">Blessings</a></li>
+                <li><a href="#family">Family</a></li>
+                <li><a href="#location">Location</a></li>
+            </ul>
         </nav>
-      </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4">
-      
-      <!-- 1. Hero Section -->
-      <section id="home" class="min-h-[85vh] flex flex-col justify-center items-center text-center py-16">
-        <div data-aos="fade-down" data-aos-duration="1000" class="font-amiri text-2xl text-amber-700 mb-4">
-          بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-        </div>
-        <p data-aos="fade-up" data-aos-delay="200" class="text-slate-500 uppercase tracking-widest text-xs md:text-sm">
-          The Wedding of
-        </p>
-        
-        <!-- പ്രധാന പേരുകൾ -->
-        <h1 data-aos="zoom-in" data-aos-delay="400" class="font-playfair text-4xl md:text-6xl font-bold my-6 text-amber-900">
-          Muhammed Shameem <span class="text-amber-600">&</span> Nabeela Narjisa
-        </h1>
-        
-        <div data-aos="zoom-in" data-aos-delay="600" class="w-24 h-1 bg-amber-500 mx-auto my-4 rounded-full"></div>
-        
-        <!-- തീയതി -->
-        <p data-aos="fade-up" data-aos-delay="700" class="text-lg md:text-xl font-medium text-slate-700">
-          Sunday · 13 Sep 2026
-        </p>
-      </section>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="bismillah reveal">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+            <div class="subtitle reveal">The Wedding of</div>
+            <h1 class="couple-names reveal">Groom Name <span class="cursive" style="color: var(--text-light);">&</span> Bride Name</h1>
+            <div class="divider reveal">✦ ✦ ✦</div>
+            <div class="wedding-date reveal">Sunday · 13 Sep 2026</div>
+            <div class="wedding-venue reveal">Venue Name, Location Address</div>
+        </section>
 
-      <!-- 2. Countdown Timer Section -->
-      <section data-aos="fade-up" class="py-12 my-8 bg-white rounded-2xl border border-amber-100 text-center shadow-xl shadow-amber-900/5">
-        <h2 class="font-playfair text-2xl md:text-3xl text-amber-900 mb-6">Counting Down to Our Big Day</h2>
-        
-        <div id="countdown" class="grid grid-cols-4 gap-2 md:gap-6 max-w-md mx-auto px-4">
-          <div class="bg-amber-50/50 border border-amber-200 p-3 md:p-4 rounded-xl">
-            <span id="days" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-800">00</span>
-            <span class="text-xs text-slate-500 uppercase">Days</span>
-          </div>
-          <div class="bg-amber-50/50 border border-amber-200 p-3 md:p-4 rounded-xl">
-            <span id="hours" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-800">00</span>
-            <span class="text-xs text-slate-500 uppercase">Hours</span>
-          </div>
-          <div class="bg-amber-50/50 border border-amber-200 p-3 md:p-4 rounded-xl">
-            <span id="minutes" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-800">00</span>
-            <span class="text-xs text-slate-500 uppercase">Minutes</span>
-          </div>
-          <div class="bg-amber-50/50 border border-amber-200 p-3 md:p-4 rounded-xl">
-            <span id="seconds" class="block font-playfair text-2xl md:text-4xl font-bold text-amber-800">00</span>
-            <span class="text-xs text-slate-500 uppercase">Seconds</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. Prayers Section -->
-      <section id="prayers" class="py-12 my-8">
-        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-900 mb-8">Our Beloved Prayers</h2>
-        
-        <div class="grid md:grid-cols-3 gap-6">
-          <div data-aos="fade-up" data-aos-delay="100" class="bg-white p-6 rounded-xl border border-amber-100 text-center shadow-sm">
-            <h3 class="font-playfair text-xl text-amber-800 mb-2">Dua for the Couple</h3>
-            <p class="text-slate-600 text-sm">May Allah bless them with love, peace, and eternal happiness together.</p>
-          </div>
-          <div data-aos="fade-up" data-aos-delay="200" class="bg-white p-6 rounded-xl border border-amber-100 text-center shadow-sm">
-            <h3 class="font-playfair text-xl text-amber-800 mb-2">Dua for Family</h3>
-            <p class="text-slate-600 text-sm">May Allah unite our families with goodness and strengthen our bonds.</p>
-          </div>
-          <div data-aos="fade-up" data-aos-delay="300" class="bg-white p-6 rounded-xl border border-amber-100 text-center shadow-sm">
-            <h3 class="font-playfair text-xl text-amber-800 mb-2">Dua for Guests</h3>
-            <p class="text-slate-600 text-sm">Jazakum Allah Khair for your warm presence and precious prayers.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. Venues & Locations Section (Nikah & Reception) -->
-      <section id="venues" class="py-12 my-8">
-        <h2 data-aos="fade-up" class="font-playfair text-3xl text-center text-amber-900 mb-10">Event Venues</h2>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-          
-          <!-- Nikah Venue Card -->
-          <div data-aos="fade-up" data-aos-delay="100" class="bg-white p-8 rounded-2xl border border-amber-100 text-center flex flex-col justify-between shadow-sm">
-            <div>
-              <span class="text-amber-800 font-medium uppercase tracking-wider text-xs bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Solemnization</span>
-              <h3 class="font-playfair text-2xl text-amber-900 mt-3 mb-2">Nikah Venue</h3>
-              
-              <p class="text-lg font-medium text-slate-800 mt-4">മസ്‌ജിദ് / സ്ഥലം പേര്</p>
-              <p class="text-slate-500 text-sm mt-1">സ്ഥലത്തിന്റെ വിലാസം ഇവിടെ നൽകുക</p>
-              <p class="text-amber-700 text-sm mt-3 font-semibold">Time: 10:00 AM</p>
+        <!-- Countdown Section -->
+        <section class="countdown-section reveal">
+            <h2 class="section-title">Counting Down to Our Big Day</h2>
+            <div class="divider">✦ ✦ ✦</div>
+            <div class="timer-container">
+                <div class="time-box">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Seconds</span>
+                </div>
             </div>
-            
-            <a href="https://maps.google.com" target="_blank" 
-               class="mt-6 inline-block bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-medium px-6 py-2.5 rounded-full transition duration-300 text-sm">
-                Get Directions (Nikah Venue)
-            </a>
-          </div>
+        </section>
 
-          <!-- Reception / Wedding Venue Card -->
-          <div data-aos="fade-up" data-aos-delay="200" class="bg-white p-8 rounded-2xl border border-amber-100 text-center flex flex-col justify-between shadow-sm">
-            <div>
-              <span class="text-amber-800 font-medium uppercase tracking-wider text-xs bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Celebration</span>
-              <h3 class="font-playfair text-2xl text-amber-900 mt-3 mb-2">Reception Venue</h3>
-              
-              <p class="text-lg font-medium text-slate-800 mt-4">Darussalam Madrassa</p>
-              <p class="text-slate-500 text-sm mt-1">Vettom, Pariyapuram</p>
-              <p class="text-amber-700 text-sm mt-3 font-semibold">Time: 11:30 AM Onwards</p>
+        <!-- Prayers Section -->
+        <section class="content-section" id="prayers">
+            <h2 class="section-title" style="text-align: center;">Our Beloved Prayers</h2>
+            <div class="divider">✦ ✦ ✦</div>
+            <div class="grid-cards">
+                <div class="card reveal">
+                    <i class="fa-solid fa-hands-praying"></i>
+                    <h3>Dua for the Couple</h3>
+                    <p>May Allah bless them with happiness, peace, and eternal togetherness.</p>
+                </div>
+                <div class="card reveal">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Dua for Family</h3>
+                    <p>May Allah unite our families with love, harmony, and joy always.</p>
+                </div>
+                <div class="card reveal">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>Dua for Guests</h3>
+                    <p>Jazakum Allah Khair for being a part of our special celebrations.</p>
+                </div>
             </div>
-            
-            <a href="https://maps.google.com" target="_blank" 
-               class="mt-6 inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-6 py-2.5 rounded-full transition duration-300 text-sm shadow-lg shadow-amber-600/20">
-                Get Directions (Reception Venue)
-            </a>
-          </div>
+        </section>
 
-        </div>
-      </section>
+        <!-- Family Details Section -->
+        <section class="content-section" id="family">
+            <h2 class="section-title" style="text-align: center;">Family Details</h2>
+            <div class="divider">✦ ✦ ✦</div>
+            <div class="grid-cards">
+                <!-- Groom Family Card -->
+                <div class="card reveal">
+                    <!-- Replace avatar image source if needed -->
+                    <img src="https://via.placeholder.com/150/12161f/d4af37?text=Groom" alt="Groom Avatar" class="family-avatar">
+                    <h3>Groom's Family</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-user"></i> <strong>Father:</strong> Father Name</li>
+                        <li><i class="fa-solid fa-user"></i> <strong>Mother:</strong> Mother Name</li>
+                        <li><i class="fa-solid fa-user-group"></i> <strong>Siblings:</strong> Brother/Sister Name</li>
+                    </ul>
+                </div>
+                <!-- Bride Family Card -->
+                <div class="card reveal">
+                    <!-- Replace avatar image source if needed -->
+                    <img src="https://via.placeholder.com/150/12161f/d4af37?text=Bride" alt="Bride Avatar" class="family-avatar">
+                    <h3>Bride's Family</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-user"></i> <strong>Father:</strong> Father Name</li>
+                        <li><i class="fa-solid fa-user"></i> <strong>Mother:</strong> Mother Name</li>
+                        <li><i class="fa-solid fa-user-group"></i> <strong>Siblings:</strong> Brother/Sister Name</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
+        <!-- Location Section -->
+        <section class="content-section" id="location">
+            <h2 class="section-title" style="text-align: center;">Location Venue</h2>
+            <div class="divider">✦ ✦ ✦</div>
+            <div class="location-container reveal">
+                <i class="fa-solid fa-location-dot" style="font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 15px;"></i>
+                <h3>Auditorium / Madrassa Name</h3>
+                <p style="color: var(--text-muted); margin-top: 5px;">Place Name, City, Kerala</p>
+                <!-- Replace with Google Maps Link -->
+                <a href="https://maps.google.com" target="_blank" class="btn-gold">Get Directions <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="text-center py-12 bg-white border-t border-amber-100 text-slate-600 text-sm mt-16">
-      <div data-aos="fade-up" class="max-w-xl mx-auto px-4">
-        <p class="font-amiri text-xl text-amber-800 mb-2">مَا شَاءَ اللَّهُ كَانَ وَمَا لَمْ يَشَأْ لَمْ يَكُنْ</p>
-        <p class="mb-4">May Allah Bless You Both and Unite You in Goodness</p>
-        <div class="w-12 h-[1px] bg-amber-200 mx-auto my-4"></div>
-        <p class="text-xs text-slate-400">With Love, Save the Date</p>
-      </div>
+    <footer>
+        <p>مَا شَاءَ اللَّهُ كَانَ وَمَا لَمْ يَشَأْ لَمْ يَكُنْ</p>
+        <p>May Allah Bless You Both and Unite You in Goodness</p>
+        <p style="margin-top: 15px; opacity: 0.6;">© 2026 | Save the Date</p>
     </footer>
 
-    <!-- AOS JavaScript Library -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Script for Animation, Open Card & Countdown -->
+    <!-- JavaScript Logic -->
     <script>
-      AOS.init({
-        duration: 900,
-        easing: 'ease-in-out',
-        once: true
-      });
+        // 1. Curtain & Page Load Animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 1000); // 1-second delay before opening doors
+        });
 
-      // Open Card Function
-      function openCard() {
-        const card = document.getElementById('welcome-card');
-        card.style.opacity = '0';
-        card.style.visibility = 'hidden';
-        setTimeout(() => {
-          card.style.display = 'none';
-        }, 700);
-      }
+        // 2. Countdown Timer
+        const weddingDate = new Date("Sep 13, 2026 11:00:00").getTime();
 
-      const weddingDate = new Date("Sep 13, 2026 10:00:00").getTime();
+        const updateTimer = () => {
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
 
-      const timer = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        if (distance < 0) {
-          clearInterval(timer);
-          document.getElementById("countdown").innerHTML = "<div class='text-amber-800 text-xl col-span-4'>The Wedding Day Has Arrived!</div>";
-          return;
-        }
+                document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+                document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+        };
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        setInterval(updateTimer, 1000);
+        updateTimer();
 
-        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
-      }, 1000);
+        // 3. Scroll Reveal Animation
+        const revealOnScroll = () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
     </script>
 </body>
 </html>
