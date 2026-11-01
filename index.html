@@ -334,10 +334,20 @@
             transform: translateY(0);
         }
 
-        @media (max-width: 768px) {
-            header nav { display: none; }
-            .couple-names { font-size: 2.3rem; }
-        }
+   @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+    }
+    nav ul {
+        gap: 15px;
+        font-size: 0.85rem;
+    }
+    .couple-names { 
+        font-size: 2.3rem; 
+    }
+}
     </style>
 </head>
 <body>
@@ -463,7 +473,7 @@
                 </div>
                 <div class="card reveal">
                     <h3>Groom's Family</h3>
-                    <p style="margin-top: 10px;"><strong>Father:</strong> Abdussalma</p>
+                    <p style="margin-top: 10px;"><strong>Father:</strong> Abdussalam</p>
                     <p><strong>Mother:</strong> Asiya</p>
                 </div>
             </div>
